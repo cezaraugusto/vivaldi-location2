@@ -96,6 +96,11 @@ Returns the first existing path found (given selected channels), or <code>null</
 
 ```js
 import vivaldiLocation from "vivaldi-location2";
+import {
+  locateVivaldiOrExplain,
+  getInstallGuidance,
+  getVivaldiVersion
+} from "vivaldi-location2";
 
 // Strict (Stable only)
 console.log(vivaldiLocation());
@@ -104,6 +109,21 @@ console.log(vivaldiLocation());
 // Enable fallback (Stable / Snapshot)
 console.log(vivaldiLocation(true));
 // => first found among Stable/Snapshot or null
+
+// Throw with a friendly guide when not found
+try {
+  const bin = locateVivaldiOrExplain({allowFallback: true});
+  console.log(bin);
+
+  // Cross-platform version (no exec by default)
+  console.log(getVivaldiVersion(bin)); // e.g. "6.9.3447.51" or null
+
+  // Opt-in: allow executing the binary (Linux/other)
+  console.log(getVivaldiVersion(bin, {allowExec: true}));
+} catch (e) {
+  console.error(String(e));
+  // Or print getInstallGuidance() explicitly
+}
 ```
 
 **Via CLI:**
@@ -114,7 +134,30 @@ npx vivaldi-location2
 
 npx vivaldi-location2 --fallback
 # Enable cascade (Stable / Snapshot)
+
+# Respect environment overrides
+VIVALDI_BINARY=/custom/path/to/vivaldi npx vivaldi-location2
+
+# Print browser version (empty + exit code 2 if unavailable)
+npx vivaldi-location2 --vivaldi-version
+npx vivaldi-location2 --browser-version
+
+# Opt-in: allow executing the binary to fetch version
+npx vivaldi-location2 --browser-version --allow-exec
 ```
+
+### Environment overrides
+
+If this environment variable is set and points to an existing binary, it takes precedence:
+
+- `VIVALDI_BINARY`
+
+## API
+
+- `default export locateVivaldi(allowFallback?: boolean): string | null`
+- `locateVivaldiOrExplain(options?: boolean | { allowFallback?: boolean }): string`
+- `getVivaldiVersion(bin: string, opts?: { allowExec?: boolean }): string | null`
+- `getInstallGuidance(): string`
 
 ## Related projects
 
@@ -123,7 +166,7 @@ npx vivaldi-location2 --fallback
 * [edge-location](https://github.com/cezaraugusto/edge-location)
 * [firefox-location2](https://github.com/cezaraugusto/firefox-location2)
 * [opera-location2](https://github.com/cezaraugusto/opera-location2)
-* [yandex-location2](https://github.com/cezaraugusto/yandex-location2)
+* [yandex-location](https://github.com/cezaraugusto/yandex-location)
 
 ## License
 
