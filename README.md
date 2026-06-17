@@ -1,4 +1,4 @@
-[npm-version-image]: https://img.shields.io/npm/v/vivaldi-location2.svg?color=c72c2c
+[npm-version-image]: https://img.shields.io/npm/v/vivaldi-location2.svg?color=0971fe
 [npm-version-url]: https://www.npmjs.com/package/vivaldi-location2
 [npm-downloads-image]: https://img.shields.io/npm/dm/vivaldi-location2.svg?color=2ecc40
 [npm-downloads-url]: https://www.npmjs.com/package/vivaldi-location2
