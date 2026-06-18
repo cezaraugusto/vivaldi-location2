@@ -1,9 +1,8 @@
-#!/usr/bin/env node
 
 const locateVivaldi =
-  require('./dist/index.cjs').default || require('./dist/index.cjs');
+  require('./dist/index.cjs').default || require('./dist/index.cjs')
 
-const argv = process.argv.slice(2);
-const allowFallback = argv.includes('--fallback') || argv.includes('-f');
+const argv = process.argv.slice(2)
+const allowFallback = argv.includes('--fallback') || argv.includes('-f')
 
-console.log(locateVivaldi(allowFallback));
+console.log(locateVivaldi(allowFallback))
