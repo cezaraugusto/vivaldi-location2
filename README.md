@@ -116,7 +116,7 @@ console.log(vivaldiLocation())
 console.log(vivaldiLocation(true))
 // => first found among Stable/Snapshot or null
 
-// Throw with a friendly guide when not found
+// Throw with an install guide when not found
 try {
   const bin = locateVivaldiOrExplain({allowFallback: true})
   console.log(bin)
