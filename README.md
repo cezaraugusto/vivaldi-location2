@@ -11,9 +11,15 @@
 
 <img alt="Vivaldi" align="right" src="https://cdn.jsdelivr.net/gh/extension-js/media@db5deb23fbfa85530f8146718812972998e13a4d/browser_logos/svg/vivaldi.svg" width="10.5%" />
 
-* By default checks only `stable`. Optionally can cascade to `snapshot`.
-* Supports macOS / Windows / Linux
-* Works both as an ES module or CommonJS
+- By default checks only `stable`. Optionally can cascade to `snapshot`.
+- Supports macOS / Windows / Linux
+- Works both as an ES module or CommonJS
+
+## Installation
+
+```bash
+npm i vivaldi-location2
+```
 
 ## Support table
 
@@ -95,35 +101,42 @@ Returns the first existing path found (given selected channels), or <code>null</
 **Via Node.js (strict by default):**
 
 ```js
-import vivaldiLocation from "vivaldi-location2";
+import vivaldiLocation from 'vivaldi-location2'
 import {
   locateVivaldiOrExplain,
   getInstallGuidance,
   getVivaldiVersion
-} from "vivaldi-location2";
+} from 'vivaldi-location2'
 
 // Strict (Stable only)
-console.log(vivaldiLocation());
+console.log(vivaldiLocation())
 // => "/Applications/Vivaldi.app/Contents/MacOS/Vivaldi" or null
 
 // Enable fallback (Stable / Snapshot)
-console.log(vivaldiLocation(true));
+console.log(vivaldiLocation(true))
 // => first found among Stable/Snapshot or null
 
 // Throw with a friendly guide when not found
 try {
-  const bin = locateVivaldiOrExplain({allowFallback: true});
-  console.log(bin);
+  const bin = locateVivaldiOrExplain({allowFallback: true})
+  console.log(bin)
 
   // Cross-platform version (no exec by default)
-  console.log(getVivaldiVersion(bin)); // e.g. "6.9.3447.51" or null
+  console.log(getVivaldiVersion(bin)) // e.g. "6.9.3447.51" or null
 
   // Opt-in: allow executing the binary (Linux/other)
-  console.log(getVivaldiVersion(bin, {allowExec: true}));
+  console.log(getVivaldiVersion(bin, {allowExec: true}))
 } catch (e) {
-  console.error(String(e));
+  console.error(String(e))
   // Or print getInstallGuidance() explicitly
 }
+```
+
+**CommonJS:**
+
+```js
+const api = require('vivaldi-location2')
+const locateVivaldi = api.default || api
 ```
 
 **Via CLI:**
@@ -161,12 +174,16 @@ If this environment variable is set and points to an existing binary, it takes p
 
 ## Related projects
 
-* [brave-location](https://github.com/cezaraugusto/brave-location)
-* [chrome-location2](https://github.com/cezaraugusto/chrome-location2)
-* [edge-location](https://github.com/cezaraugusto/edge-location)
-* [firefox-location2](https://github.com/cezaraugusto/firefox-location2)
-* [opera-location2](https://github.com/cezaraugusto/opera-location2)
-* [yandex-location](https://github.com/cezaraugusto/yandex-location)
+- [brave-location](https://github.com/cezaraugusto/brave-location)
+- [chrome-location2](https://github.com/cezaraugusto/chrome-location2)
+- [chromium-location](https://github.com/cezaraugusto/chromium-location)
+- [edge-location](https://github.com/cezaraugusto/edge-location)
+- [firefox-location2](https://github.com/cezaraugusto/firefox-location2)
+- [safari-location2](https://github.com/cezaraugusto/safari-location2)
+- [opera-location2](https://github.com/cezaraugusto/opera-location2)
+- [waterfox-location](https://github.com/cezaraugusto/waterfox-location)
+- [librewolf-location](https://github.com/cezaraugusto/librewolf-location)
+- [yandex-location](https://github.com/cezaraugusto/yandex-location)
 
 ## License
 
